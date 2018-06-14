@@ -8,44 +8,53 @@ var katzDeli = [];
 var otherDeli = ["Steven", "Blake", "Avi"];
 var deliLine; 
 var inLine;
-
-
+var msg ="";
 
 // function to take a number - 
 // pass arugments: current line of people, name of new customer
 // log position in line using index + 1 position
 function takeANumber (lineStatus, newCustomer) {
   //assign parameter lineStatus to variable for global scope
-  katzDeli = lineStatus;  
-  // console.log(katzDeli);
+  deliLine = lineStatus;  
 
   // add new customer to array
-  katzDeli.push(newCustomer);
-  // console.log(katzDeli);
+  // deliLine.push(newCustomer);
 
   // loop through each element in the array
-  for (var i = 0; i < katzDeli.length; i++) {
-  // console.log(i+1 + " " + katzDeli[i]);
-}
+  for (var i = 0; i < deliLine.length; i++) {
+  // var cust = deliLine[i];
+  var num = i + 1;
+  // console.log(num + " " + cust);
+  }
   // log the new customer's position in line, where i is position
-  console.log("Welcome, " + newCustomer + ". You are number " + i + " in line.");
+  // console.log(deliLine);
+  console.log("Welcome, " + ". You are number " + num + ".");
 }
 
-// call the function and arguments
+// call the function and pass arguments
 takeANumber(katzDeli, "Ada");
-// takeANumber(otherDeli, "Grace");
+// console.log(deliLine);
+
+// takeANumber(otherDeli, "Alby");
+
+// add deliLine to katzDeli array
+// will take in Ada if first function called
+// Array.prototype.push.apply(katzDeli,deliLine);
+// console.log(deliLine);
 
 // takeANumber(katzDeli, 'Ada');
-// takeANumber(katzDeli, 'Grace');
-// takeANumber(katzDeli, 'Kent');
+// console.log(deliLine);
 
+// takeANumber(katzDeli, 'Grace');
+
+// takeANumber(katzDeli, 'Kent');
+// console.log(deliLine);
 
 // function nowServing
 function nowServing (lineStatus) {
-  deliLine = lineStatus;
   // console.log(deliLine);
   // if less than 1 in line do this
-  if (deliLine.length < 1) {
+  if (lineStatus.length < 1) {
       inLine = false;
       console.log("There is nobody waiting to be served!");
       // console.log(deliLine);
@@ -53,33 +62,32 @@ function nowServing (lineStatus) {
     } else {
       inLine = true;
       // log who is being served
-      console.log("Currently serving " + deliLine[0] + ".");
+      console.log("Currently serving " + lineStatus[0] + ".");
       // remove name being served using first index position and remove one element
-      deliLine.splice(0, 1);
-      // loop through each element in the array
-      for (var i = 0; i < deliLine.length; i++) {
-        // console.log(i+1 + " " + deliLine[i]);
-        }  
-      // console.log(deliLine);
+      lineStatus.splice(0, 1);
+      //console.log(lineStatus);
+      if (lineStatus.length < 1) { 
+      inLine = false;
+    }
     }
 }
 
-nowServing(otherDeli);
-// console.log(inLine);
+nowServing(deliLine);
+//console.log(inLine);
 
 //function current in line
 //returns the current line using index position + name
 //if not, return line is empty
 function currentLine (line) {
     if (inLine === true) {
-    var msg = "";
     for (var i = 0; i < deliLine.length; i++) {
-    msg += i+1 + "." + deliLine[i] + " ";
+    msg += i+1 + ". " + deliLine[i] + " ";
       }    
       console.log("The line is currently: " + msg);
-  } else if (inLine === false) {
-    console.log("The line is currently empty.");   
-}
+    } else if (inLine === false) {  
+    msg = "The line is currently empty.";  
+    console.log(msg);   
+    }
+  }
 
-}
 currentLine(deliLine);
